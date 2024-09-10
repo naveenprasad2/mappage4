@@ -4,6 +4,8 @@ import 'package:mappage4/splash_screen.dart';
 import 'mappage.dart';
 
 void main(){
+
+
   runApp(MyApp());
 }
 
