@@ -1,8 +1,9 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:mappage4/mappage.dart';
 // import 'package:karki_project/home_page.dart';
 
-import 'home_page.dart';
+
 
 
 class SplashScreen extends StatefulWidget {
@@ -21,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (mounted) {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => MapPage()),
         );
       }
     });
@@ -39,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
       centered: true,
       splashIconSize: 200,
       duration: 2500,
-      nextScreen:  HomePage(),
+      nextScreen:  MapPage(),
     );
   }
 }
