@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:mappage4/views/drawer_view.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -130,24 +131,29 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
+      drawer: MenuPage(),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(75), 
         child: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.yellow[700],
           flexibleSpace: Container(
-
             child: Padding(
               padding:  EdgeInsets.only(top: 50),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  IconButton(
-                      onPressed: () {},
+                  Builder(
+                    builder: (context) => IconButton(
+                      onPressed: () {
+                        Scaffold.of(context).openDrawer();
+                      },
                       icon: const Icon(
                         Icons.menu,
                         color: Colors.white,
                       ),
                     ),
+                  ),
 
                   Container(
                     height: 50,
@@ -166,6 +172,7 @@ class _MapPageState extends State<MapPage> {
                     ),
                     child: TextFormField(
                       decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(top: 12),
                         border: InputBorder.none,
                         hintText: 'Pickup location',
                          prefixIcon: Icon(Icons.directions_bike, color: Colors.grey),
@@ -245,6 +252,7 @@ class _MapPageState extends State<MapPage> {
                       ),
                       child: TextFormField(
                         decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(top: 12),
                           border: InputBorder.none,
                           hintText: 'Drop location',
                            prefixIcon: Icon(Icons.pin_drop, color: Colors.grey),

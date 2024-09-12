@@ -1,7 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:mappage4/mappage.dart';
-// import 'package:karki_project/home_page.dart';
+import 'package:mappage4/views/onboarding_view.dart';
 
 
 
@@ -22,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (mounted) {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => MapPage()),
+          MaterialPageRoute(builder: (context) => OnboardingView()),
         );
       }
     });
@@ -32,15 +31,13 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
       splash:
-      Center(
-        child: Image.asset('lib/assets//karki.png'),
-      ),
+      Image.asset('lib/assets/karki.png'),
       curve: Curves.bounceOut,
       splashTransition: SplashTransition.sizeTransition,
       centered: true,
       splashIconSize: 200,
       duration: 2500,
-      nextScreen:  MapPage(),
+      nextScreen:  OnboardingView(),
     );
   }
 }
