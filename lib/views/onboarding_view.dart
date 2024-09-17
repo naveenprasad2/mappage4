@@ -89,8 +89,8 @@ class _OnboardingViewState extends State<OnboardingView> {
           borderRadius: BorderRadius.circular(30),
           color: Colors.yellow[700]
       ),
-      width: 145,
-      height: 40,
+      width: 155,
+      height: 50,
       child: TextButton(
         onPressed: ()async{
           final pres = await SharedPreferences.getInstance();

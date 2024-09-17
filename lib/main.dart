@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:mappage4/splash_screen.dart';
 import 'package:mappage4/views/drawer_view.dart';
+import 'assets/search_history.dart';
 import 'mappage.dart';
 
 void main(){
@@ -14,9 +16,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: MapPage(),
 
     );
   }
