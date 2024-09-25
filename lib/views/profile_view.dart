@@ -62,6 +62,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       body:SingleChildScrollView(
         child: Column (
@@ -75,10 +77,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 onIconTap: (){}),
 
 
-            const SizedBox(height: 10),
+             SizedBox(height: height * 0.01 ),
             ListTile(
               leading: Icon(Icons.person),
-              title: Text('Name',
+              title: const Text('Name',
                 style: TextStyle(
                     fontWeight: FontWeight.w500),),
               subtitle: Row(
@@ -88,7 +90,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
               trailing: IconButton(
-                icon: Icon(Icons.keyboard_arrow_right_outlined),
+                icon: const Icon(Icons.keyboard_arrow_right_outlined),
                 onPressed: () {
                   firstNameController.text = firstName;
                   lastNameController.text = lastName;
@@ -101,86 +103,88 @@ class _ProfilePageState extends State<ProfilePage> {
                             bottom: MediaQuery.of(context).viewInsets.bottom),
                         child: SingleChildScrollView(
                           child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                            height: 300,
-                            decoration: BoxDecoration(
+                            padding:  EdgeInsets.symmetric(horizontal: width * 0.016, vertical: height * 0.03),
+                            height: height * 0.35,
+                            decoration: const BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
                                 topRight: Radius.circular(30),
                               ),
                             ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 240.0),
-                                  child: Text(
-                                    'Edit Name',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
+                            child: Padding(
+                              padding:  EdgeInsets.symmetric(horizontal: 15),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Align(alignment : Alignment.centerLeft,
+                                    child: Text(
+                                      'Edit Name',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(height: 16),
-                                // First Name TextField
-                                TextField(
-                                  controller: firstNameController,
-                                  decoration: InputDecoration(
-                                    labelText: 'First Name',
-                                    prefixIcon: Icon(Icons.person),
-                                    suffixIcon: IconButton(
-                                      icon: Icon(Icons.close_outlined),
+                                  SizedBox(height: height * 0.02),
+                                  // First Name TextField
+                                  TextField(
+                                    controller: firstNameController,
+                                    decoration: InputDecoration(
+                                      labelText: 'First Name',
+                                      prefixIcon: Icon(Icons.person),
+                                      suffixIcon: IconButton(
+                                        icon: Icon(Icons.close_outlined),
+                                        onPressed: () {
+                                          firstNameController.clear(); // Clear the text field
+                                        },
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                    ),
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  SizedBox(height: height * 0.02),
+                                  // Last Name TextField
+                                  TextField(
+                                    controller: lastNameController,
+                                    decoration: InputDecoration(
+                                      labelText: 'Last Name',
+                                      prefixIcon: Icon(Icons.person_outline),
+                                      suffixIcon: IconButton(
+                                        icon: Icon(Icons.close_outlined),
+                                        onPressed: () {
+                                          lastNameController.clear();
+                                        },
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                    ),
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  SizedBox(height: height * 0.02),
+                                  SizedBox(
+                                    //width: double.infinity,
+                                    child: TextButton(
                                       onPressed: () {
-                                        firstNameController.clear(); // Clear the text field
+                                        setState(() {
+                                          firstName = firstNameController.text;
+                                          lastName = lastNameController.text;
+                                        });
+                                        Navigator.pop(context);
                                       },
-                                    ),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                  ),
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                                SizedBox(height: 16),
-                                // Last Name TextField
-                                TextField(
-                                  controller: lastNameController,
-                                  decoration: InputDecoration(
-                                    labelText: 'Last Name',
-                                    prefixIcon: Icon(Icons.person_outline),
-                                    suffixIcon: IconButton(
-                                      icon: Icon(Icons.close_outlined),
-                                      onPressed: () {
-                                        lastNameController.clear();
-                                      },
-                                    ),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15),
+                                      child: Text('Save Changes'),
+                                      style: TextButton.styleFrom(
+                                        padding: EdgeInsets.symmetric(vertical: 15,horizontal: 35),
+                                        foregroundColor: Colors.black,
+                                        backgroundColor: Colors.yellow[600],
+                                      ),
                                     ),
                                   ),
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                                SizedBox(height: 20),
-                                SizedBox(
-                                  width: double.infinity,
-                                  child: TextButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        firstName = firstNameController.text;
-                                        lastName = lastNameController.text;
-                                      });
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text('Save Changes'),
-                                    style: TextButton.styleFrom(
-                                      foregroundColor: Colors.black,
-                                      backgroundColor: Colors.yellow[700],
-                                      //padding: EdgeInsets.symmetric(vertical: 12.0),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -190,9 +194,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 },
               ),
             ),
-
-
-
 
             Divider(indent: 12, endIndent: 12),
 
@@ -204,7 +205,7 @@ class _ProfilePageState extends State<ProfilePage> {
               subtitle: Text('+91 1234567890'),
             ),
 
-            const SizedBox(height: 10),
+            //const SizedBox(height: 10),
             Divider(indent: 12, endIndent: 12),
 
 
@@ -230,7 +231,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             bottom: MediaQuery.of(context).viewInsets.bottom),
                         child: SingleChildScrollView(
                           child: Container(
-                            height: 200,
+                            height: height * 0.25,
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.only(
@@ -241,14 +242,13 @@ class _ProfilePageState extends State<ProfilePage> {
                               padding: const EdgeInsets.all(16.0),
                               child: Column(
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 240.0),
+                                  Align(alignment : Alignment.centerLeft,
                                     child: Text(' Edit Email',
                                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 16),
+                                  SizedBox(height: height * 0.02),
                                   TextField(
                                     controller: emailController,
                                     decoration: InputDecoration(
@@ -275,8 +275,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                   },
                                     child: Text('Save Changes'),
                                     style: TextButton.styleFrom(
+                                      padding: EdgeInsets.symmetric(vertical: 15,horizontal: 35),
                                       foregroundColor: Colors.black,
-                                      backgroundColor: Colors.yellow[700],
+                                      backgroundColor: Colors.yellow[600],
                                     ),
                                   ),
                                 ],
@@ -292,7 +293,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
               ),
             ),
-            const SizedBox(height: 10),
+            // SizedBox(height: 10),
 
 
             Divider(indent: 12, endIndent: 12),
@@ -311,7 +312,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     builder: (BuildContext context) {
                       return Container(
                         padding: EdgeInsets.all(16.0),
-                        height: 280,
+                        height: height * 0.35,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -426,7 +427,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
 
             ),
-            const SizedBox(height: 10),
+           // const SizedBox(height: 10),
 
 
 
@@ -441,7 +442,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
 
 
-            const SizedBox(height: 10),
+            //const SizedBox(height: 10),
             const Divider(indent: 12, endIndent: 12),
             const ListTile(
               leading: Icon(Icons.verified_outlined),

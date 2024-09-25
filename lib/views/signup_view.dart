@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mappage4/views/terms_conditions.dart';
-
-import 'home_view.dart';
 import 'login_view.dart';
 
 class SignupPage extends StatefulWidget {
@@ -25,12 +23,12 @@ class _SignupPageState extends State<SignupPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar:AppBar(
-        title: Text('Sign Up'),
+        title: Text('Sign Up',style: TextStyle(fontWeight: FontWeight.bold),),
         leading: IconButton(onPressed: (){
           Navigator.pop(context);
         }, icon: Icon(Icons.arrow_back)),
         centerTitle: true,
-        backgroundColor: Colors.yellow[700],
+        backgroundColor: Colors.yellow[600],
       ),
       /*PreferredSize(
         preferredSize: const Size.fromHeight(100.0),
@@ -49,12 +47,12 @@ class _SignupPageState extends State<SignupPage> {
         ),
       ),*/
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(10.0),
+        padding: EdgeInsets.symmetric(vertical: height * 0.03,horizontal: width * 0.02),
         child: Form(
           key: _formKey,
           child: Column(
             children: <Widget>[
-              SizedBox(height: 20),
+              //SizedBox(height: 10),
               Container(
                 width: width * 0.9,
                 child: TextFormField(
@@ -63,7 +61,7 @@ class _SignupPageState extends State<SignupPage> {
                     labelText: 'Full Name',
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.yellow.shade700,),
+                      borderSide: BorderSide(color: Colors.yellow.shade600,),
                     ),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
@@ -76,7 +74,7 @@ class _SignupPageState extends State<SignupPage> {
                   },
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: height * 0.02),
               Container(
                 width: width * 0.9,
                 child: TextFormField(
@@ -85,7 +83,7 @@ class _SignupPageState extends State<SignupPage> {
                     labelText: 'Email',
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.yellow.shade700,),
+                      borderSide: BorderSide(color: Colors.yellow.shade600,),
                     ),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
@@ -102,7 +100,7 @@ class _SignupPageState extends State<SignupPage> {
                   },
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: height * 0.02),
               Container(
                 width: width * 0.9,
                 child: TextFormField(
@@ -111,7 +109,7 @@ class _SignupPageState extends State<SignupPage> {
                     labelText: 'Phone Number',
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.yellow.shade700,),
+                      borderSide: BorderSide(color: Colors.yellow.shade600,),
                     ),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
@@ -127,17 +125,16 @@ class _SignupPageState extends State<SignupPage> {
                   },
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: height * 0.02),
               Container(
                 width: width * 0.9,
                 child: TextFormField(
                   controller: passwordController,
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    //labelStyle: TextStyle(color: Colors.yellow[700]),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.yellow.shade700,),
+                      borderSide: BorderSide(color: Colors.yellow.shade600,),
                     ),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
@@ -153,9 +150,7 @@ class _SignupPageState extends State<SignupPage> {
                   },
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: height * 0.02,),
               Row(children: [
                 Checkbox(
                   value: _isChecked,
@@ -185,10 +180,10 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
               ]),
-              SizedBox(height: 40),
+              SizedBox(height: height * 0.03),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.yellowAccent.shade700,
+                    backgroundColor: Colors.yellow.shade600,
                     foregroundColor: Colors.white),
                 onPressed: _signUp,
                 child: Text(
@@ -265,7 +260,7 @@ class _SignupPageState extends State<SignupPage> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            backgroundColor: Colors.yellow[700],
+            backgroundColor: Colors.yellow[600],
             title: Text(
               'Success',
               style: TextStyle(color: Colors.black),
@@ -276,10 +271,8 @@ class _SignupPageState extends State<SignupPage> {
             ),
           ),
         );
-
-        // Automatically dismiss the dialog after 2 seconds and navigate
         Future.delayed(Duration(seconds: 2), () {
-          Navigator.of(context).pop(); // Dismiss the dialog
+          Navigator.of(context).pop();
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => LoginScreen()),

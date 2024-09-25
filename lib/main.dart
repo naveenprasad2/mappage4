@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:mappage4/splash_screen.dart';
+import 'package:mappage4/views/conform_ride_view.dart';
 import 'package:mappage4/views/drawer_view.dart';
-import 'assets/search_history.dart';
+import 'package:mappage4/views/trip_details_view.dart';
+//import 'assets/search_history.dart';
 import 'mappage.dart';
 
 void main(){
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MapPage(),
+      //home: SplashScreen(),
+      home: ConformView(),
 
     );
   }

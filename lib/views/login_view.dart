@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:karki_customer_app/view/signup_view.dart';
-import 'home_view.dart';
+
 
 
 class LoginScreen extends StatelessWidget {
@@ -163,7 +163,7 @@ class LoginScreen extends StatelessWidget {
 }
 
 
-*//*
+*/ /*
 
 
 
@@ -369,7 +369,6 @@ class LoginScreen extends StatelessWidget {
 }
 */
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mappage4/views/signup_view.dart';
@@ -378,9 +377,6 @@ import 'otp_view.dart';
 class LoginScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>(); // Form key for validation
   final TextEditingController _phoneController = TextEditingController();
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -392,7 +388,7 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: height * 0.8,
+              height: height * 0.75,
               width: width,
               color: Colors.transparent,
               child: Column(
@@ -401,10 +397,10 @@ class LoginScreen extends StatelessWidget {
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.yellow[700],
+                        color: Colors.yellow[600],
                         borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.elliptical(200, 50),
-                          bottomRight: Radius.circular(40.0),
+                          bottomLeft: Radius.circular(60),
+                          bottomRight: Radius.circular(60),
                         ),
                       ),
                       child: Center(
@@ -435,7 +431,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SizedBox(height: height * 0.05),
                   Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: width * 0.08),
+                    padding: EdgeInsets.symmetric(horizontal: width * 0.08),
                     child: Form(
                       key: _formKey, // Assign the form key
                       child: Column(
@@ -458,26 +454,24 @@ class LoginScreen extends StatelessWidget {
                           TextFormField(
                             controller: _phoneController,
                             decoration: InputDecoration(
-
                               labelText: "Enter mobile number",
-                              hintStyle: TextStyle(color: Colors.yellow[700]),
+                              hintStyle: TextStyle(color: Colors.yellow[600]),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)
-                              ),
+                                  borderRadius: BorderRadius.circular(10)),
                               focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.yellow.shade700),
-                                  borderRadius: BorderRadius.circular(10)
-                              ),
-                              prefixText: '+91 ', // Add the +91 inside the text field
+                                  borderSide:
+                                      BorderSide(color: Colors.yellow.shade600),
+                                  borderRadius: BorderRadius.circular(10)),
+                              prefixText: '+91 ',
                               prefixStyle: TextStyle(
-                                color: Colors.black, // You can change the style of +91 here
+                                color: Colors.black,
                                 fontSize: 16.0,
                               ),
                             ),
                             keyboardType: TextInputType.phone,
                             inputFormatters: [
                               FilteringTextInputFormatter.digitsOnly,
-                              LengthLimitingTextInputFormatter(10), // Limits input to 10 digits
+                              LengthLimitingTextInputFormatter(10),
                             ],
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -494,15 +488,15 @@ class LoginScreen extends StatelessWidget {
                             child: ElevatedButton(
                               onPressed: () {
                                 if (_formKey.currentState?.validate() == true) {
-                                  // If validation is successful, navigate to the Otp page
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => Otp()),
+                                    MaterialPageRoute(
+                                        builder: (context) => Otp()),
                                   );
                                 }
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.yellow.shade700,
+                                backgroundColor: Colors.yellow.shade600,
                                 padding: EdgeInsets.symmetric(vertical: 14.0),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30.0),
@@ -537,13 +531,14 @@ class LoginScreen extends StatelessWidget {
                                 onPressed: () {
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => SignupPage()),
+                                    MaterialPageRoute(
+                                        builder: (context) => SignupPage()),
                                   );
                                 },
                                 child: Text(
                                   'Sign up',
                                   style: TextStyle(
-                                    color: Colors.yellow[700],
+                                    color: Colors.yellow[600],
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),

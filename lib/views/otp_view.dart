@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../mappage.dart';
-import 'home_view.dart';
 
 class Otp extends StatefulWidget {
   const Otp({super.key});
@@ -66,16 +65,16 @@ class _OtpState extends State<Otp> {
         preferredSize: const Size.fromHeight(250.0),
         child: ClipRRect(
           borderRadius: const BorderRadius.only(
-            bottomLeft: Radius.elliptical(200, 100),
+            bottomLeft: Radius.circular(60),
             bottomRight: Radius.circular(60),
           ),
           child: AppBar(automaticallyImplyLeading: false,
               centerTitle: true,
-              backgroundColor: Colors.yellow[700],
+              backgroundColor: Colors.yellow[600],
               toolbarHeight: 260.0,
               flexibleSpace: Stack(children: [
                 Positioned(
-                  top: height * 0.1,
+                  top: height * 0.15,
                   left: width * 0.3,
                   child: Text(
                     "Verification!",
@@ -86,28 +85,28 @@ class _OtpState extends State<Otp> {
                   ),
                 ),
                 Positioned(
-                  top: height * 0.15,
-                  left: width * 0.13,
+                  top: height * 0.2,
+                  left: width * 0.1,
                   child: Text(
                     "Please enter the 4-digit code sent to you at",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      fontSize: 17,
+                      fontSize: 15,
                     ),
                   ),
                 ),
                 Positioned(
-                  top: height * 0.18,
+                  top: height * 0.22,
                   left: width * 0.35,
                   child: Text(
                     "+911234567890",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      fontSize: 18,
+                      fontSize: 15,
                     ),
                   ),
                 ),
-                Positioned(
+                /*Positioned(
                   top: 30,
                   left: 50,
                   child: Container(
@@ -124,7 +123,7 @@ class _OtpState extends State<Otp> {
                       ),
                     ),
                   ),
-                ),
+                ),*/
               ])),
         ),
       ),
@@ -146,13 +145,13 @@ class _OtpState extends State<Otp> {
                         isDense: true,
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                            color: Colors.yellow[700]!,
+                            color: Colors.yellow[600]!,
                             width: 2.0,
                           ),
                         ),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                            color: Colors.yellow[800]!,
+                            color: Colors.yellow[600]!,
                             width: 3.0,
                           ),
                         ),
@@ -175,7 +174,7 @@ class _OtpState extends State<Otp> {
               child: ElevatedButton(
                 onPressed: _submitOtp,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.yellow[700],
+                  backgroundColor: Colors.yellow[600],
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0),
                   ),

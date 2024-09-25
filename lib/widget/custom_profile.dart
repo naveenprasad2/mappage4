@@ -43,15 +43,15 @@ class CustomProfile extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          height: height * 0.35,
+          height: height * 0.36,
           width: width,
-          decoration:  BoxDecoration(color: Colors.yellow.shade700,
+          decoration:  BoxDecoration(color: Colors.yellow.shade600,
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(40),
                 bottomRight: Radius.circular(40)),
           ),
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(10, 40, 25, 50),
+            padding: const EdgeInsets.fromLTRB(10, 40, 25, 60),
             child: Column(
               children: [
                 Row(
@@ -72,7 +72,7 @@ class CustomProfile extends StatelessWidget {
                       ),
                     ),
                     ElevatedButton(
-                        style: ElevatedButton.styleFrom(backgroundColor: Colors.yellow[700],
+                        style: ElevatedButton.styleFrom(backgroundColor: Colors.yellow[600],
                         ),
                         onPressed: (){
 
@@ -93,7 +93,7 @@ class CustomProfile extends StatelessWidget {
                 Spacer(),
                 Text(
                   text2,
-                  style: const TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500,fontFamily: "Nunito",
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500,fontFamily: "Nunito",
                   ),
                 ),
 
