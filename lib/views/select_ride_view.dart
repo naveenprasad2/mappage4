@@ -626,7 +626,7 @@ class _RideOptionsState extends State<RideOptions> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          height: height * 0.48,
+          height: height * 0.42,
           decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(

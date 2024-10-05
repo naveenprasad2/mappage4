@@ -1,5 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:mappage4/views/otp_ride_conformation_view.dart';
+
+import 'cancle_view.dart';
 
 class ConformView extends StatefulWidget {
   const ConformView({super.key});
@@ -15,7 +18,7 @@ class _ConformViewState extends State<ConformView> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    final List<int> amounts = [10, 20, 30, 40];
+    final List<int> amounts = [0,10, 20, 30, 40];
 
     return Scaffold(
       body: Stack(
@@ -25,7 +28,7 @@ class _ConformViewState extends State<ConformView> {
               alignment: Alignment.bottomCenter,
               child: Container(
                 //height: height * 0.55,
-                height: height * 0.7,
+                height: height * 0.5,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -47,6 +50,7 @@ class _ConformViewState extends State<ConformView> {
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500,
                                 fontFamily: "Nunito",
+                                color: Colors.black
                               ),
                               children: <TextSpan>[
                                 TextSpan(
@@ -67,6 +71,7 @@ class _ConformViewState extends State<ConformView> {
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500,
                                 fontFamily: "Nunito",
+                                color: Colors.black
                               ),
                               children: <TextSpan>[
                                 TextSpan(
@@ -161,6 +166,7 @@ class _ConformViewState extends State<ConformView> {
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500,
                                 fontFamily: "Nunito",
+                                color: Colors.black
                               ),
                               children: <TextSpan>[
                                 TextSpan(
@@ -192,7 +198,7 @@ class _ConformViewState extends State<ConformView> {
                       SizedBox(height: height * 0.01),
                       Container(
                         //height: height * 0.28,
-                        height: height * 0.4,
+                        height: height * 0.21,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(25),),
                           color: Colors.grey,
@@ -270,6 +276,15 @@ class _ConformViewState extends State<ConformView> {
                               ),
                               Divider(color: Colors.grey),
                               Align(
+                                alignment: Alignment.bottomRight,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(foregroundColor: Colors.red,side: BorderSide(color: Colors.yellow.shade700,width: 2
+                                  )),
+                                    onPressed: (){
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => CancelReason()));
+                                    }, child: Text('Cancel')),
+                              )
+                              /*Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text("Do you want to tip our driver ?",style: TextStyle(
                                   fontSize: 15,
@@ -278,25 +293,6 @@ class _ConformViewState extends State<ConformView> {
                                 ),),
                               ),
                               Divider(color: Colors.grey),
-
-/* Wrap(
-                                spacing: 10,
-                                children: amounts.map((amount) {
-                                  return ChoiceChip(
-                                    label: Text("$amount Rs"),
-                                    selected: selectedAmount == amount,
-                                    onSelected: (bool selected) {
-                                      setState(() {
-                                        // Always set selectedAmount to the clicked amount
-                                        selectedAmount = amount;
-                                      });
-                                    },
-                                    selectedColor: Colors.yellow.shade600,
-                                    backgroundColor: Colors.grey[200], // Background when not selected
-                                  );
-                                }).toList(),
-                              )*/
-
                               Wrap(
                                 spacing: 5,
                                 children: amounts.map((amount) {
@@ -306,11 +302,6 @@ class _ConformViewState extends State<ConformView> {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         if (isSelected)
-                                        /*Icon(
-                                            Icons.check,
-                                            color: Colors.black,
-                                            size: 16,
-                                          ),*/
                                           SizedBox(width: 5),
                                         Text(
                                           "$amount Rs",
@@ -334,66 +325,24 @@ class _ConformViewState extends State<ConformView> {
                                   );
                                 }).toList(),
                               ),
-
+                              
+                              Padding(
+                                padding: const EdgeInsets.only(top: 10,right: 20),
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(foregroundColor:Colors.black,backgroundColor: Colors.yellow.shade600),
+                                    onPressed: selectedAmount != null ? () {
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => OtpConformationPage()));
+                                    } : null,
+                                    child: Text('Done')),
+                              ),*/
                             ],
                           ),
                         ),
                       ),
-
-/* Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey.shade300),
-                            color: Colors.grey.shade100,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.circle,
-                                      color: Colors.green,
-                                      size: 20,
-                                    ),
-                                    const SizedBox(width: 8),
-                                    Container(
-                                      height: height * 0.035,
-                                      width: width * 0.75,
-                                      child: const Text("Kodambakam"),
-                                    ),
-                                  ],
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.only(left: 30),
-                                  child: Divider(color: Colors.grey),
-                                ),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.circle,
-                                      color: Colors.red,
-                                      size: 20,
-                                    ),
-                                    const SizedBox(width: 8),
-                                    Container(
-                                      height: height * 0.035,
-                                      width: width * 0.75,
-                                      child: const Text("Tambaram"),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),*/
-
+                      SizedBox(height: 5,),
+                      ElevatedButton(onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => OtpConformationPage()));
+                      }, child: Text('Next'))
                     ],
                   ),
                 ),
