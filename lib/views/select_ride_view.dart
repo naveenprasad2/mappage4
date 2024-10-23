@@ -541,7 +541,7 @@ class _RideBookingPageState extends State<RideBookingPage> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-           body: Stack(
+      body: Stack(
         children: [
           GoogleMap(
             onMapCreated: (GoogleMapController controller) {
@@ -575,36 +575,36 @@ class _RideBookingPageState extends State<RideBookingPage> {
           ),
 
           Positioned(
-             top: 490,
-             left: 20,
+            top: 490,
+            left: 20,
             child: CircleAvatar(
-               backgroundColor: Colors.white,
-               radius: 20,
-               child: IconButton(
-                 icon: Icon(Icons.arrow_back, color: Colors.black),
-                 onPressed: () {
-                   Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage()));
-                 },
-               ),
-             ),
-           ),
-           Positioned(
-             top: 490,
-             right: 20,
-             child: CircleAvatar(
-               backgroundColor: Colors.white,
-               radius: 20,
-               child: IconButton(
-                 icon: Icon(Icons.my_location_outlined, color: Colors.blue),
-                 onPressed: () {},
-               ),
-             ),
-           ),
-           Align(
-             alignment: Alignment.bottomCenter,
-             child: RideOptions(),
-           ),
-                 ],
+              backgroundColor: Colors.white,
+              radius: 20,
+              child: IconButton(
+                icon: Icon(Icons.arrow_back, color: Colors.black),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage()));
+                },
+              ),
+            ),
+          ),
+          Positioned(
+            top: 490,
+            right: 20,
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: 20,
+              child: IconButton(
+                icon: Icon(Icons.my_location_outlined, color: Colors.blue),
+                onPressed: () {},
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: RideOptions(),
+          ),
+        ],
       ),
     );
   }
@@ -626,7 +626,7 @@ class _RideOptionsState extends State<RideOptions> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          height: height * 0.42,
+          height: height * 0.55,
           decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
@@ -645,18 +645,18 @@ class _RideOptionsState extends State<RideOptions> {
             padding: EdgeInsets.all(10),
             children: [
               RideOptionTile(
-                imagePath: 'lib/assets/Bike.jpg',
-                title: 'Bike',
+                imagePath: 'lib/assets/E-auto1.webp',
+                title: 'E-Auto',
                 icon: Icons.person,
                 number: 1,
-                subtitle: 'Quick Bike rides',
+                subtitle: 'Safe and quick Auto rides',
                 price: '₹211',
                 time: '4 mins away • Drop 11:29 am',
                 isFastest: true,
-                isSelected: selectedRide == 'Bike',
+                isSelected: selectedRide == 'E-Auto',
                 onTap: () {
                   setState(() {
-                    selectedRide = 'Bike';
+                    selectedRide = 'E-Auto';
                   });
                 },
               ),
@@ -672,6 +672,37 @@ class _RideOptionsState extends State<RideOptions> {
                 onTap: () {
                   setState(() {
                     selectedRide = 'Auto';
+                  });
+                },
+              ),
+              RideOptionTile(
+                imagePath: 'lib/assets/E-Cab1.jpg',
+                title: 'E-Cab',
+                icon: Icons.person,
+                number: 4,
+                subtitle: 'Affordable car rides',
+                price: '₹420',
+                oldPrice: '₹490',
+                time: '4 mins • Drop 11:35 am',
+                isSelected: selectedRide == 'E-Cab',
+                onTap: () {
+                  setState(() {
+                    selectedRide = 'E-Cab';
+                  });
+                },
+              ), RideOptionTile(
+                imagePath: 'lib/assets/cab.jpg',
+                title: 'Cab',
+                icon: Icons.person,
+                number: 4,
+                subtitle: 'Affordable car rides',
+                price: '₹420',
+                oldPrice: '₹490',
+                time: '4 mins • Drop 11:35 am',
+                isSelected: selectedRide == 'Cab',
+                onTap: () {
+                  setState(() {
+                    selectedRide = 'Cab';
                   });
                 },
               ),
@@ -714,7 +745,7 @@ class _RideOptionsState extends State<RideOptions> {
                 ),
                 child: Column(
                   children: [
-                    Row(
+                    /* Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
@@ -757,8 +788,8 @@ class _RideOptionsState extends State<RideOptions> {
                           ],
                         ),
                       ],
-                    ),
-                    SizedBox(height: 25),
+                    ),*/
+                    //SizedBox(height: 25),
                     /*Row(
                       children: [
                         Padding(
@@ -808,7 +839,7 @@ class _RideOptionsState extends State<RideOptions> {
                         minimumSize: Size(300, 50),
                       ),
                       child: Text(
-                        'Book ${selectedRide ?? 'Bike'}',
+                        'Book ${selectedRide ?? ''}',
                         style:
                         TextStyle(fontSize: 15, color: Colors.black),
                       ),
@@ -967,4 +998,3 @@ class RideOptionTile extends StatelessWidget {
         ));
   }
 }
-

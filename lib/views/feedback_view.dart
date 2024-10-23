@@ -40,6 +40,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:mappage4/mappage.dart';
 
 class FeedbackPage extends StatefulWidget {
   @override
@@ -60,14 +61,13 @@ class _FeedbackPageState extends State<FeedbackPage> {
   @override
   void initState() {
     super.initState();
-    // Initialize all options as not selected
     feedbackOptions.forEach((option) {
       selectedOptions[option] = false;
     });
   }
 
   void _submitFeedback() {
-    // Handle feedback submission (e.g., send data to server)
+    Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage()));
     print("Rating: $_rating");
     print("Comments: $_comments");
     print("Selected Options: ${selectedOptions.entries.where((e) => e.value).map((e) => e.key).toList()}");
@@ -78,85 +78,92 @@ class _FeedbackPageState extends State<FeedbackPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Rate Your Ride'),
+        actions: [
+          TextButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage()));
+          }, child: Text('Skip')),
+        ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text('Driver :',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                Text('Raja',style: TextStyle(fontSize: 18),),
-              ],
-            ),
-            Text(
-              'Rate the Ride',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-            RatingBar.builder(
-              initialRating: 0,
-              minRating: 1,
-              direction: Axis.horizontal,
-              allowHalfRating: true,
-              itemCount: 5,
-              itemBuilder: (context, _) => Icon(
-                Icons.star,
-                color: Colors.amber,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text('Driver :',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                  Text('Raja',style: TextStyle(fontSize: 18),),
+                ],
               ),
-              onRatingUpdate: (rating) {
-                setState(() {
-                  _rating = rating;
-                });
-              },
-            ),
-            SizedBox(height: 16),
-            Text(
-              'Predefined Feedback',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-            Wrap(
-              spacing: 10.0,
-              children: feedbackOptions.map((option) {
-                return FilterChip(
-                  label: Text(option),
-                  selected: selectedOptions[option] ?? false,
-                  onSelected: (bool value) {
-                    setState(() {
-                      selectedOptions[option] = value;
-                    });
-                  },
-                );
-              }).toList(),
-            ),
-            SizedBox(height: 16),
-            Text(
-              'Additional Comments',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-            TextField(
-              maxLines: 4,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Enter your comments here...',
+              Text(
+                'Rate the Ride',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              onChanged: (text) {
-                setState(() {
-                  _comments = text;
-                });
-              },
-            ),
-            SizedBox(height: 16),
-            Center(
-              child: ElevatedButton(
-                onPressed: _submitFeedback,
-                child: Text('Submit Feedback'),
+              SizedBox(height: 8),
+              RatingBar.builder(
+                initialRating: 0,
+                minRating: 1,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemBuilder: (context, _) => Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+                onRatingUpdate: (rating) {
+                  setState(() {
+                    _rating = rating;
+                  });
+                },
               ),
-            ),
-          ],
+              SizedBox(height: 16),
+              Text(
+                'Predefined Feedback',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 8),
+              Wrap(
+                spacing: 10.0,
+                children: feedbackOptions.map((option) {
+                  return FilterChip(
+                    label: Text(option),
+                    selected: selectedOptions[option] ?? false,
+                    onSelected: (bool value) {
+                      setState(() {
+                        selectedOptions[option] = value;
+                      });
+                    },
+                  );
+                }).toList(),
+              ),
+              SizedBox(height: 16),
+              Text(
+                'Additional Comments',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 8),
+              TextField(
+                maxLines: 4,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Enter your comments here...',
+                ),
+                onChanged: (text) {
+                  setState(() {
+                    _comments = text;
+                  });
+                },
+              ),
+              SizedBox(height: 16),
+              Center(
+                child: ElevatedButton(
+                  onPressed: _submitFeedback,
+                  child: Text('Submit Feedback'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

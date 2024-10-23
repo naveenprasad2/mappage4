@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'feedback_view.dart';
+
 class PaymentDone extends StatefulWidget {
   const PaymentDone({super.key});
 
@@ -31,7 +33,7 @@ class _PaymentDoneState extends State<PaymentDone> {
             Text('Total Fare: ${totalFare.toStringAsFixed(1)}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
             SizedBox(height: 10),
             Container(
-              height: 175,
+              height: 150,
               width: 300,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
@@ -80,7 +82,7 @@ class _PaymentDoneState extends State<PaymentDone> {
                         );
                       }).toList(),
                     ),
-                    Padding(
+                    /* Padding(
                       padding: const EdgeInsets.only(top: 10, right: 20),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -95,7 +97,7 @@ class _PaymentDoneState extends State<PaymentDone> {
                             : null,
                         child: Text('Done'),
                       ),
-                    ),
+                    ),*/
                   ],
                 ),
               ),
@@ -122,24 +124,17 @@ class _PaymentDoneState extends State<PaymentDone> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Payment Confirmation'),
-          content: Text('Your payment of \$${totalFare.toStringAsFixed(1)} has been processed.'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-              },
-              child: Text('OK'),
-            ),
-          ],
+          title: Center(child: Text('Payment Done')),
+          content: Icon(Icons.check_circle_outline_sharp,color: Colors.green,size: 100,),
         );
       },
     );
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.of(context).pop(); // Close the alert dialog
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => FeedbackPage()), // Replace `NextPage()` with the actual next page widget
+      );
+    });
   }
 }
-
-
-
-
-
-

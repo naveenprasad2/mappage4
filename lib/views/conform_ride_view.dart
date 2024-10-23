@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:mappage4/views/otp_ride_conformation_view.dart';
 
@@ -14,6 +13,21 @@ class ConformView extends StatefulWidget {
 class _ConformViewState extends State<ConformView> {
   int? selectedAmount; // Store the selected amount
 
+  // Create a TextEditingController to manage the input of the TextFormField
+  final TextEditingController _controller = TextEditingController();
+
+  void _sendMessage() {
+    // Print the message to the terminal
+    String message = _controller.text;
+    if (message.isNotEmpty) {
+      print("Message sent: $message");
+
+      // Clear the TextFormField after sending
+      _controller.clear();
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -27,8 +41,8 @@ class _ConformViewState extends State<ConformView> {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                //height: height * 0.55,
-                height: height * 0.5,
+                height: height * 0.56,
+                // height: height * 0.53,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -47,10 +61,10 @@ class _ConformViewState extends State<ConformView> {
                           RichText(
                             text: const TextSpan(
                               style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "Nunito",
-                                color: Colors.black
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: "Nunito",
+                                  color: Colors.black
                               ),
                               children: <TextSpan>[
                                 TextSpan(
@@ -68,10 +82,10 @@ class _ConformViewState extends State<ConformView> {
                           RichText(
                             text: const TextSpan(
                               style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "Nunito",
-                                color: Colors.black
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: "Nunito",
+                                  color: Colors.black
                               ),
                               children: <TextSpan>[
                                 TextSpan(
@@ -88,7 +102,7 @@ class _ConformViewState extends State<ConformView> {
                           ),
                         ],
                       ),
-                       SizedBox(height: height * 0.01),
+                      SizedBox(height: height * 0.01),
                       Padding(
                         padding:  EdgeInsets.symmetric(horizontal: width * 0.015 ),
                         child: Row(
@@ -101,7 +115,7 @@ class _ConformViewState extends State<ConformView> {
                                 height: 50,
                               ),
                             ),
-                             SizedBox(width: width * 0.01),
+                            SizedBox(width: width * 0.01),
                             const Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -151,22 +165,54 @@ class _ConformViewState extends State<ConformView> {
                           ],
                         ),
                       ),
-                       SizedBox(height: height * 0.01),
+                      SizedBox(height: height * 0.01),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ElevatedButton(
-                            style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                            style: ElevatedButton.styleFrom(backgroundColor: Colors.white,shape: RoundedRectangleBorder()),
                             onPressed: () {},
                             child:  Text("Contact Info",style: TextStyle(color: Colors.yellow.shade600),),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: TextFormField(
+                                controller: _controller,  // Bind the controller
+                                decoration: InputDecoration(
+                                  hintText: "Enter your message",
+                                  suffixIcon: IconButton(
+                                    onPressed: _sendMessage,  // Call the send function
+                                    icon: Icon(Icons.send),
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: height * 0.02),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Ride Details",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "Nunito",
+                            ),
                           ),
                           RichText(
                             text: const TextSpan(
                               style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "Nunito",
-                                color: Colors.black
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: "Nunito",
+                                  color: Colors.black
                               ),
                               children: <TextSpan>[
                                 TextSpan(
@@ -183,22 +229,10 @@ class _ConformViewState extends State<ConformView> {
                           ),
                         ],
                       ),
-                       SizedBox(height: height * 0.02),
-                      const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Ride Details",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Nunito",
-                          ),
-                        ),
-                      ),
                       SizedBox(height: height * 0.01),
                       Container(
                         //height: height * 0.28,
-                        height: height * 0.21,
+                        height: height * 0.24,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(25),),
                           color: Colors.grey,
@@ -278,10 +312,10 @@ class _ConformViewState extends State<ConformView> {
                               Align(
                                 alignment: Alignment.bottomRight,
                                 child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(foregroundColor: Colors.red,side: BorderSide(color: Colors.yellow.shade700,width: 2
-                                  )),
+                                    style: ElevatedButton.styleFrom(foregroundColor: Colors.red,side: BorderSide(color: Colors.yellow.shade700,width: 2
+                                    )),
                                     onPressed: (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => CancelReason()));
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => CancelReason()));
                                     }, child: Text('Cancel')),
                               )
                               /*Align(
@@ -355,4 +389,23 @@ class _ConformViewState extends State<ConformView> {
   }
 }
 
+/*
+void main() {
+  runApp(const MyApp());
+}
 
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'OTP Input',
+      theme: ThemeData(
+        primarySwatch: Colors.orange,
+      ),
+      home: const ConformView(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}*/
